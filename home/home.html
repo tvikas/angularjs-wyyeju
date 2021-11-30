@@ -1,4 +1,96 @@
+<style>
+  .border-class {
+    //border: 1px solid grey;
+  }
+</style>
 <h1>Hello {{$ctrl.name}}!</h1>
-<p>
-  Start editing <b>home/home.html</b> :)
-</p>
+<h1>Candidates</h1>
+<input
+  ng-model="filters.Male"
+  type="checkbox"
+  id="male"
+  name="male"
+  value="Male"
+/>
+Male
+<input
+  style="margin-left: 10px"
+  type="checkbox"
+  id="female"
+  name="female"
+  value="Female"
+  ng-click="filterData('Female')"
+/>Female
+<input
+  placeholder="Whom are you looking for ?"
+  style="margin-left: 10px"
+  type="text"
+  id="search"
+  name="search"
+  ng-model="srch"
+/>
+
+<br />
+<table class="border-class" style="width: 100%">
+  <tr class="border-class">
+    <th class="border-class">#</th>
+    <th class="border-class">First Name</th>
+    <th class="border-class">Last Name</th>
+    <th class="border-class">Email</th>
+    <th class="border-class">Gender</th>
+  </tr>
+  <tr ng-repeat="tmp in $ctrl.data | filter:srch">
+    <td class="border-class">{{tmp.id}}</td>
+    <td class="border-class">{{tmp.first_name}}</td>
+    <td class="border-class">{{tmp.last_name}}</td>
+    <td class="border-class">{{tmp.email}}</td>
+    <td class="border-class">{{tmp.gender}}</td>
+  </tr>
+</table>
+
+<br />
+<h1>Add New Candidates</h1>
+
+<table style="width: 100%">
+  <tr>
+    <td>
+      <input
+        placeholder="First Name"
+        style="margin-left: 10px"
+        type="text"
+        id="firstName"
+        name="firstName"
+      />
+    </td>
+    <td></td>
+    <td>
+      <input
+        placeholder="Last Name"
+        style="margin-left: 10px"
+        type="text"
+        id="lastName"
+        name="lastName"
+      />
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="3">
+      <input
+        placeholder="Email"
+        type="text"
+        style="margin-left: 10px; width: 100%"
+        id="email"
+        name="email"
+      />
+    </td>
+  </tr>
+
+  <tr>
+    <td><input type="radio" name="gender" value="FeMale" /> Female</td>
+    <td><input type="radio" name="gender" value="Male" /> Male</td>
+    <td>
+      <input type="submit" name="Add" value="Add" />
+    </td>
+  </tr>
+</table>
